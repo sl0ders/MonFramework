@@ -1,15 +1,16 @@
 <?php
 
+
 namespace Tests\Framework\Module;
 
 use Framework\Router;
 
-class ErroredModule
+class StringModule
 {
     public function __construct(Router $router)
     {
         $router->get('/demo', function () {
-            return new \stdClass();
+            return 'DEMO';
         }, 'demo');
     }
 }

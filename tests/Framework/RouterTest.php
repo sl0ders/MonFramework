@@ -54,10 +54,9 @@ class RouterTest extends TestCase
         $this->assertEquals('hello', call_user_func_array($route->getCallback(), [$request]));
         $this->assertEquals(['slug' => 'mon-slug', 'id' => '8'], $route->getParams());
         // Test invalid url
-        $route = $this->router->match(new ServerRequest('GET', '/blog/mon-slug-8'));
+        $route = $this->router->match(new ServerRequest('GET', '/blog/mon_slug-8'));
         $this->assertEquals(null, $route);
     }
-
 
     public function testGenerateUri()
     {
