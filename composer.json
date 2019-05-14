@@ -1,0 +1,21 @@
+{
+    "name": "grafikart/mon-projet",
+    "authors": [
+        {
+            "name": "sl0ders",
+            "email": "sl0ders@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "src/Framework"
+        }
+    },
+    "require": {
+        "guzzlehttp/psr7": "^1.5",
+        "http-interop/response-sender": "^1.0",
+        "phpunit/phpunit": "^8.1"
+    },
+    "require-dev": {
+    }
+}
