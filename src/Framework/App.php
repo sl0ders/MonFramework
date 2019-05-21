@@ -6,6 +6,8 @@ use Exception;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as ServerRequest;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
 
 class App
 {
@@ -23,12 +25,19 @@ class App
     /**
      * App constructor.
      * @param string[] $modules List des modules a charger
+     * @param array $dependencies
      */
-    public function __construct(array $modules = [])
+    public function __construct(array $modules = [], array $dependencies = [])
     {
+        $whoops = new Run;
+        $whoops->pushHandler(new PrettyPageHandler);
+        $whoops->register();
         $this->router = new Router();
+        if (array_key_exists('renderer', $dependencies)) {
+            $dependencies['renderer']->addGlobal('router', $this->router);
+        }
         foreach ($modules as $module) {
-            $this->modules[] = new $module($this->router);
+            $this->modules[] = new $module($this->router, $dependencies['renderer']);
         }
     }
 

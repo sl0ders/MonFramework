@@ -2,7 +2,7 @@
 
 namespace tests\Framework;
 
-use App\Blog\BlogModule;
+use Blog\BlogModule;
 use Framework\App;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
@@ -30,7 +30,6 @@ class AppTest extends TestCase
         $response = $app->run($request);
         $this->assertStringContainsString('<h1>Bienvenue sur le blog</h1>', (string)$response->getBody());
         $this->assertEquals(200, $response->getStatusCode());
-
         $requestSingle = new ServerRequest('GET', '/blog/article-de-test');
         $responseSingle = $app->run($requestSingle);
         $this->assertStringContainsString('<h1>Bienvenue sur l\'article article-de-test</h1>', (string)$responseSingle->getBody());
