@@ -26,7 +26,6 @@ class RendererTest extends TestCase
 
     public function testRendererTheDefaultPath()
     {
-
         $content = $this->renderer->render('demo');
         $this->assertEquals('salut les gens', $content);
     }
